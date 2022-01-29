@@ -35,17 +35,18 @@ def set_msg(session_id, msg):
         ret_val = ""
         session_update = db.session.query(Sessions).get(session_id)
         if session_update.msg is not None:
-            ret_val = "overriding message for session id: " + session_id + ", previous message was: " + session_update.msg + "\n"
+            ret_val = "Overriding message for session id: " + session_id + ", previous message was: " + session_update.msg + "\n"
         session_update.msg = msg
         db.session.commit()
         return ret_val
+
     except:
         return handle_server_500("There was an issue adding message to a session id!")
 
 
 def get_msg(session_id):
+    
     try:
-
         ret_msg = db.session.query(Sessions).get(session_id).msg
         if ret_msg is None:
             return "There is no message for session id " + session_id
@@ -64,7 +65,6 @@ class Sessions(db.Model):
     def __init__(self, id):
         self.id = id
         
-
     def __repr__(self):
         return "Session ID generated: " + str(self.id)
 
@@ -73,13 +73,6 @@ def validate_json_keys(json_data):
 
     keys_dict = json_data.keys()
     must_have_keys = ["message", "additional", "level", "timestamp", "fileName", "lineNumber"]
-
-    # THIS IS REPLACED WITH THE BELOW LAMBDA!!
-    # for key in must_have_keys:
-    #     if key not in keys_dict:
-    #         return False
-
-    # return True
 
     return all(map(lambda provided_json_keys: True if provided_json_keys in keys_dict else False, must_have_keys))
 
@@ -106,7 +99,6 @@ def print_DEBUG(logger, logging_data):
 def print_NOTSET(logger, logging_data):
     for data in logging_data: logger.notset(data)
 
-
 # logging the data to a .log file:
 def log_data(logger, session_id, json_data):
 
@@ -115,6 +107,7 @@ def log_data(logger, session_id, json_data):
 
     # parsering the json params:
     str_log_level = json_data["level"]
+    
     # validate str_log_level:
     if log_level_validation(str_log_level) is False:
         return handle_bad_input_501("The provided log level isn't valid!")
@@ -168,8 +161,7 @@ def handle_bad_input_501(err_msg):
 
 @app.route("/")
 def home():
-    return "Main demystify page"
-
+    return "Main demystify project page"
 
 @app.route("/session_id", methods=["POST", "PUT", "DELETE"])
 def handle_session_id_forbidden_requests():
@@ -202,14 +194,11 @@ def get_session_msg():
     curr_session_id = request.args.get("session_id")
     if session_id_validation(curr_session_id) is False:
         return handle_bad_input_501("The provided session id isn't valid!")
-
     return get_msg(curr_session_id)
-
 
 @app.route("/log", methods=["GET", "PUT", "DELETE"])
 def handle_session_log_forbidden_requests():
     return handle_bad_input_501("This method is forbidden for log url!")
-
 
 @app.route("/log", methods=["POST"])
 def log():
@@ -237,7 +226,6 @@ def log():
 
     ret_val+="logging done!"
     return ret_val
-
 
 if __name__ == "__main__":
     db.create_all()
