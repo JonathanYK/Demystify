@@ -7,7 +7,17 @@ def validate_json_keys(json_data):
     keys_dict = json_data.keys()
     must_have_keys = ["message", "additional", "level", "timestamp", "fileName", "lineNumber"]
 
-    return all(map(lambda provided_json_keys: True if provided_json_keys in keys_dict else False, must_have_keys))
+    if (all(map(lambda provided_json_keys: True if provided_json_keys in keys_dict else False, must_have_keys))):
+        return True
+
+    ret_str = "The following key/s are missing:\n"
+    for key in keys_dict:
+        if key in must_have_keys:
+            must_have_keys.remove(key)
+
+    ret_str += str(must_have_keys).strip('[]')
+    return ret_str
+        
 
 # sets the provided msg in the db, handles overriding data:
 def set_msg(session_id, msg):
@@ -22,7 +32,7 @@ def set_msg(session_id, msg):
         return ret_val
 
     except:
-        return handle_server_500("There was an issue adding message to a session id!")
+        return handle_server_500(f"There was an issue adding message to a session id: {session_id}")
 
 
 # blueprint for home page of demystify project:
@@ -32,3 +42,5 @@ home_blueprint = Blueprint('home', __name__)
 @home_blueprint.route("/")
 def home():
     return "Main demystify project page"
+
+    

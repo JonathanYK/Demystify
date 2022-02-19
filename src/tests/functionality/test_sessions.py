@@ -1,4 +1,3 @@
-
 def test_main_page(test_client):
     """
     GIVEN a Flask application configured for testing
@@ -9,7 +8,6 @@ def test_main_page(test_client):
     response = test_client.get('/')
     assert "Main demystify project page" in str(response.data)
     assert response.status_code == 200
-
 
 
 def test_sessions_id_generator_page(test_client, return_session_id=False):
@@ -29,3 +27,4 @@ def test_sessions_id_generator_page(test_client, return_session_id=False):
 
     if return_session_id:
         return gen_session_id
+

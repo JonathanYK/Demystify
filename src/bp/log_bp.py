@@ -1,4 +1,3 @@
-import errno
 import logging
 import os
 from flask import Blueprint, request
@@ -7,25 +6,29 @@ from .home_bp import set_msg, validate_json_keys
 from .sessions_bp import session_id_validation
 
 def log_level_validation(cur_log_level):
-    curr_log_lvls = ["CRITICAL", "ERROR", "WARNING", "INFO", "DEBUG", "NOTSET"]
-    return True if cur_log_level in curr_log_lvls else False
+    return cur_log_level in {"CRITICAL", "ERROR", "WARNING", "INFO", "DEBUG", "NOTSET"}
 
 
 # dynamic methods, each for the appropriate level:
 def print_CRITICAL(logger, logging_data):
     for data in logging_data: logger.critical(data)
 
+
 def print_ERROR(logger, logging_data):
     for data in logging_data: logger.error(data)
+
 
 def print_WARNING(logger, logging_data):
     for data in logging_data: logger.warning(data)
 
+
 def print_INFO(logger, logging_data):
     for data in logging_data: logger.info(data)
 
+
 def print_DEBUG(logger, logging_data):
     for data in logging_data: logger.debug(data)
+
 
 def print_NOTSET(logger, logging_data):
     for data in logging_data: logger.notset(data)
@@ -78,8 +81,8 @@ def log_data(logger, session_id, json_data):
     logger.removeHandler(file_handler)
     logger.removeHandler(stream_handler)
 
-
 log_blueprint = Blueprint('log', __name__)
+
 
 # handles invalid requests:
 @log_blueprint.route("/log", methods=["GET", "PUT", "DELETE"])
@@ -100,8 +103,9 @@ def log():
         return handle_bad_input_501("The provided session id isn't valid!")
 
     # validate there arn't missing required keys in json file:
-    if validate_json_keys(request.json) is False:
-        return handle_bad_input_501("There is a missing key/s in the provided json!")
+    json_valid = validate_json_keys(request.json)
+    if json_valid is not True:
+        return handle_bad_input_501(json_valid)
 
     logger = logging.getLogger("__name__")
 
@@ -113,3 +117,4 @@ def log():
 
     ret_val+=f"logging session id: {str(curr_session_id)} done!"
     return ret_val
+

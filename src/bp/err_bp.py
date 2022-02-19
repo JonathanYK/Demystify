@@ -14,3 +14,5 @@ def handle_server_500(err_msg):
 @err_blueprint.errorhandler(501)
 def handle_bad_input_501(err_msg):
     return err_msg, 501
+
+    
