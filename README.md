@@ -1,4 +1,4 @@
-# Demystify project:
+# Demystify project
 
 The main purpose of this project is managing sessions using Flask framework in front of an SQLite database (using SQLAlchemy as ORM).
 Supported routes splitted to blueprints, 2 configurations defined in order to execute this project both on test and production environments.
