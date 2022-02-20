@@ -1,5 +1,7 @@
 # Demystify project
 
+IDE: Visual Studio Code v1.64.2
+
 The main purpose of this project is managing sessions using Flask framework in front of an SQLite database (using SQLAlchemy as ORM).
 There are 2 main APIs that has to be handled, according to the assignment:
 
