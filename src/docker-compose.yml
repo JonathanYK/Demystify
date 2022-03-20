@@ -1,17 +1,29 @@
 version: '3'
 services:
-    sessions-service:
-        build: .
-        ports:
-          - 5000
-        volumes:
-            - .:/src
-            
-    nginx:
+
+    nginx_app:
+
         image: nginx:latest
-        volumes:
-            - ./nginx.conf:/src/nginx.cong:ro
         depends_on:
-            - sessions-service
+        - flask_app
+        volumes:
+        - './nginx/nginx.conf:/etc/nginx/nginx.conf'
         ports:
-            - 80:80
+        - 8090:80
+        networks:
+        - backend
+
+
+    flask_app:
+
+        image: flaski_name
+        ports:
+        - 8081:5000
+        expose:
+        - 5000
+        networks:
+        - backend
+
+
+networks:
+    backend:

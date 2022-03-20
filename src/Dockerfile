@@ -15,6 +15,3 @@ RUN pip install -r requirements.txt
 
 # mentioning the command to be executed when creating a container:
 CMD [ "python", "./main_app.py" ]
-
-
-# TODO: CHECK WHY NOT WORKING AFTER RUNNING THE CONTAINER!!!

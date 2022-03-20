@@ -4,4 +4,4 @@ from project import create_app
 # instance using the development configuration (flask_test.cfg)
 
 app = create_app('flask.cfg')
-app.run(debug=False, host='0.0.0.0')
+app.run(debug=False, host='0.0.0.0', port=5000)
