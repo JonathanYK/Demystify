@@ -1,0 +1,17 @@
+version: '3'
+services:
+    sessions-service:
+        build: .
+        ports:
+          - 5000
+        volumes:
+            - .:/src
+            
+    nginx:
+        image: nginx:latest
+        volumes:
+            - ./nginx.conf:/src/nginx.cong:ro
+        depends_on:
+            - sessions-service
+        ports:
+            - 80:80
