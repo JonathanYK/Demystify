@@ -21,7 +21,7 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_TOKEN }}
         
     - uses: actions/checkout@v3
-    - name: Build the Docker image
+    - name: Build and push the Docker image
       
       run:  
             docker build -t ${{ secrets.DOCKER_HUB_USER }}/sessions-project:githubactions ./src
