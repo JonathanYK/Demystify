@@ -27,7 +27,7 @@ jobs:
       
       run:  
 
-            docker build -t ${{ secrets.DOCKER_HUB_USER }}/sessions-project:githubactions .src
+            docker build -t ${{ secrets.DOCKER_HUB_USER }}/sessions-project:githubactions ./src
             
             docker push ${{ secrets.DOCKER_HUB_USER }}/sessions-project:githubactions
       
