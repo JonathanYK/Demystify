@@ -23,7 +23,7 @@ def test_sessions_id_generator_page(test_client, return_session_id=False):
 
     assert ret_lst[0] == "Session ID generated"
     
-    # gen_session_id has to be exactly 9 digits:
+    # gen_session_id has to be exactly 9 digits :
     assert len(str(gen_session_id)) == 9
     assert response.status_code == 201
 
