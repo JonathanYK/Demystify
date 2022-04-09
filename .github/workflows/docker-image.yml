@@ -26,11 +26,8 @@ jobs:
     - name: Build the Docker image
       
       run:  
-            ls
-            cd ..
-            cd ..
-            cd src
-            docker build -t ${{ secrets.DOCKER_HUB_USER }}/sessions-project:githubactions .
+
+            docker build -t ${{ secrets.DOCKER_HUB_USER }}/sessions-project:githubactions .src
             
             docker push ${{ secrets.DOCKER_HUB_USER }}/sessions-project:githubactions
       
