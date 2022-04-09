@@ -8,15 +8,24 @@ on:
 
 jobs:
 
+
+
   build:
 
     runs-on: ubuntu-latest
 
     steps:
+        
+    - name: Login to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_HUB_USER }}
+        password: ${{ secrets.DOCKER_HUB_TOKEN }}
+        
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run:  docker build -t jonathanyk/sessions-project:githubactions .
-            docker login -u=${{secrets.DOCKER_HUB_USER}} -p=${{secrets.DOCKER_HUB_TOKEN}}
+            
             docker push jonathanyk/sessions-project:githubactions
       
             
