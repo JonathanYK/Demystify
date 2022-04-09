@@ -8,8 +8,6 @@ on:
 
 jobs:
 
-
-
   build:
 
     runs-on: ubuntu-latest
@@ -26,9 +24,7 @@ jobs:
     - name: Build the Docker image
       
       run:  
-
             docker build -t ${{ secrets.DOCKER_HUB_USER }}/sessions-project:githubactions ./src
-            
             docker push ${{ secrets.DOCKER_HUB_USER }}/sessions-project:githubactions
       
             
