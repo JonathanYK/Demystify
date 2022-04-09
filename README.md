@@ -19,5 +19,9 @@ In order to run this project on a container, you can use the following commands 
 `docker build -t sessions_proj_img .`  
 `docker run -p 8081:5000 sessions_proj_img`
   
+In addition, there is a docker-compose.yml with nginx support.  
+In order to build using the docker compose file, use the command:  
+`docker-compose up --build -d`  
+  
   
 `IDE: Visual Studio Code v1.64.2`

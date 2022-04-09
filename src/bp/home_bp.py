@@ -41,6 +41,6 @@ home_blueprint = Blueprint('home', __name__)
 
 @home_blueprint.route("/")
 def home():
-    return "Main demystify project page"
+    return "Main sessions project page"
 
     

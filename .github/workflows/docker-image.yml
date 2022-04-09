@@ -1,0 +1,31 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+        
+    - name: Login to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_HUB_USER }}
+        password: ${{ secrets.DOCKER_HUB_TOKEN }}
+        
+    - uses: actions/checkout@v3
+    - name: Build and push the Docker image
+      
+      run:  
+            docker build -t ${{ secrets.DOCKER_HUB_USER }}/sessions-project:githubactions ./src
+            
+            docker push ${{ secrets.DOCKER_HUB_USER }}/sessions-project:githubactions
+      
+            
