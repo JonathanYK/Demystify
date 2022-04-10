@@ -1,6 +1,8 @@
 # This shell file should be placed in /home/ubuntu/src in order to restart the docker compose (reclone the project and pull docker image).
 
+echo "------------------"
 date -u
+echo "------------------"
 
 echo "entring main path"
 cd /home/ubuntu
