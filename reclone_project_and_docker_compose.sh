@@ -29,7 +29,9 @@ echo "create dedicated dir for reclone_project_and_docker_compose.sh"
 mkdir -p /home/ubuntu/reclone_shell
 
 echo "copy reclone_project_and_docker_compose.sh to /home/ubuntu/reclone_shell"
-cp /home/ubuntu/Sessions_Project/reclone_project_and_docker_compose.sh /home/ubuntu/reclone_shell
+cp Sessions_Project/reclone_project_and_docker_compose.sh /home/ubuntu/reclone_shell
+
+chmod +x reclone_shell/reclone_project_and_docker_compose.sh
  
 echo "entering cloned project"
 cd ./Sessions_Project/src
