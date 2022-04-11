@@ -21,3 +21,13 @@ cd ./Sessions_Project/src
 
 echo "compose up"
 sudo docker-compose up -d
+
+
+
+# lastly, add a schedule using crontab:
+# $crontab -e
+# Add there the following command (for each day at 00:15):
+# 15 0 * * * /home/ubuntu/src/reclone_project_and_docker_compose.sh >> /home/ubuntu/cron.log 2>&1
+
+# or this one for each 5 minutes (for debug):
+# 0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/ubuntu/src/reclone_project_and_docker_compose.sh >> /home/ubuntu/cron.log 2>&1
