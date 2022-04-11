@@ -8,6 +8,14 @@
 # or this one for each 5 minutes (for debug):
 # 0,5,10,15,20,25,30,35,40,45,50,55 * * * * /home/ubuntu/reclone_shell/reclone_project_and_docker_compose.sh >> /home/ubuntu/cron.log 2>&1
 
+# make sure to execute the following commands manually on the first time:
+# git clone git@github.com:JonathanYK/Sessions_Project.git
+# mkdir -p /home/ubuntu/reclone_shell
+# cp Sessions_Project/reclone_project_and_docker_compose.sh /home/ubuntu/reclone_shell
+# chmod +x reclone_shell/reclone_project_and_docker_compose.sh
+# cd ./Sessions_Project/src
+# sudo docker-compose up -d
+
 
 echo "------------------"
 date -u
@@ -31,6 +39,7 @@ mkdir -p /home/ubuntu/reclone_shell
 echo "copy reclone_project_and_docker_compose.sh to /home/ubuntu/reclone_shell"
 cp Sessions_Project/reclone_project_and_docker_compose.sh /home/ubuntu/reclone_shell
 
+echo "provide permissions to reclone_shell/reclone_project_and_docker_compose.sh"
 chmod +x reclone_shell/reclone_project_and_docker_compose.sh
  
 echo "entering cloned project"
