@@ -1,4 +1,4 @@
-# Sessions project
+# Session project
 
 
 The main purpose of this project is managing sessions with Flask framework using a SQLite database (using SQLAlchemy as ORM).
@@ -25,3 +25,8 @@ In order to build using the docker compose file, use the command:
   
   
 `IDE: Visual Studio Code v1.64.2`
+
+
+## Env preview:
+
+![image](https://user-images.githubusercontent.com/48648513/162792774-fbfdb2ff-4681-49d2-b8fe-4ff77f3c8109.png)
