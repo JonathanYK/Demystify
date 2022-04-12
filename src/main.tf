@@ -12,6 +12,7 @@ provider "aws" {
   region  = "us-east-1"
 }
 
+
 resource "aws_vpc" "sessions-vpc-tf" {
   cidr_block           = "10.0.0.0/16"
   enable_dns_hostnames = true
@@ -21,7 +22,6 @@ resource "aws_vpc" "sessions-vpc-tf" {
     ManagedBy = "terraform"
   }
 }
-
 
 resource "aws_internet_gateway" "sessions-gw-tf" {
   vpc_id = aws_vpc.sessions-vpc-tf.id
@@ -35,12 +35,10 @@ resource "aws_internet_gateway" "sessions-gw-tf" {
 resource "aws_route_table" "sessions-rt-tf" {
   vpc_id = aws_vpc.sessions-vpc-tf.id
 
-
   tags = {
     Name      = "sessions-rt-tf"
     ManagedBy = "terraform"
   }
-
 
   route {
     cidr_block = "0.0.0.0/0"
@@ -48,14 +46,10 @@ resource "aws_route_table" "sessions-rt-tf" {
   }
 }
 
-
 resource "aws_route_table_association" "sessions-associ-rt-tf" {
   subnet_id      = aws_subnet.sessions-sn-tf.id
   route_table_id = aws_route_table.sessions-rt-tf.id
-
 }
-
-
 
 resource "aws_subnet" "sessions-sn-tf" {
   vpc_id     = aws_vpc.sessions-vpc-tf.id
@@ -66,7 +60,6 @@ resource "aws_subnet" "sessions-sn-tf" {
     ManagedBy = "terraform"
   }
 }
-
 
 resource "aws_network_acl" "sessions-acl-tf" {
   vpc_id     = aws_vpc.sessions-vpc-tf.id
@@ -121,12 +114,9 @@ resource "aws_security_group" "sessions-sg-tf" {
   }
 }
 
-
-
 resource "aws_eip_association" "sessions-eip_assoc-tf" {
   instance_id   = aws_instance.sessions-instance-tf7.id
   allocation_id = aws_eip.sessions-eip-tf.id
-
 }
 
 resource "aws_instance" "sessions-instance-tf7" {
@@ -140,29 +130,16 @@ resource "aws_instance" "sessions-instance-tf7" {
     Name      = "sessions-instance-tf7"
     ManagedBy = "terraform"
   }
-
 }
-
 
 resource "aws_eip" "sessions-eip-tf" {
   vpc        = true
   instance   = aws_instance.sessions-instance-tf7.id
   depends_on = [aws_internet_gateway.sessions-gw-tf]
-
-
 }
-
-
 
 output "instance_public_dns" {
   description = "The public_ip and public_dns for logging in to the instance."
   value       = "public_ip = ${aws_instance.sessions-instance-tf7.public_ip}, and public_dns = ${aws_instance.sessions-instance-tf7.public_dns}"
 }
 
-
-
-
-
-# Deploy the project on instance!
-
-# make the output to be the url to use the project(lunch the instance)
