@@ -2,7 +2,6 @@ version: '3'
 services:
 
     nginx_app:
-
         image: nginx:latest
         depends_on:
             - flask_app
@@ -13,9 +12,7 @@ services:
         networks:
             - backend
 
-
     flask_app:
-
         image: jonathanyk/sessions-project:githubactions
         ports:
             - 8081:5000
@@ -23,8 +20,6 @@ services:
             - 5000
         networks:
             - backend
-
-
 
     tf:
         image: hashicorp/terraform:1.1.7
@@ -34,8 +29,6 @@ services:
             - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
             - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
             - AWS_SESSION_TOKEN=${AWS_SESSION_TOKEN}
-
-
 
 
 networks:
