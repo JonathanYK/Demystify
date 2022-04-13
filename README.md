@@ -30,7 +30,7 @@ The terraform code located in `/src/main.tf` creates aws environment with all re
 
 On each push to the main branch, there is a github action that builds and pushs the docker image to docker hub
 
-Once on each day, there is crontab configuration (explained in `/reclone_project_and_docker_compose.sh`) that restarting the docker-compose:
+Once a day, there is crontab configuration (explained in `/reclone_project_and_docker_compose.sh`) that restarts the docker-compose:
 >1. Composing down the active containers (flask_app and nginx).
 >2. Cloning the project from github repo (current repo).
 >3. Restart the compose with the latest image from docker hub uploaded by github action explained above.
