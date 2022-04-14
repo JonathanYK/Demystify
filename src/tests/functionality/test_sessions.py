@@ -6,7 +6,7 @@ def test_main_page(test_client):
     """
 
     response = test_client.get('/')
-    return str(response.data)
+    print(response.data)
     assert "Main demystify project page" in str(response.data)
     assert response.status_code == 200
 
