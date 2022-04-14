@@ -1,15 +1,3 @@
-def test_main_page(test_client):
-    """
-    GIVEN a Flask application configured for testing
-    WHEN the '/' page is requested (GET)
-    THEN check the response is valid.
-    """
-
-    response = test_client.get('/')
-    print(response.data)
-    assert "Main demystify project page" in str(response.data)
-    assert response.status_code == 200
-
 
 def test_sessions_id_generator_page(test_client, return_session_id=False):
     """
