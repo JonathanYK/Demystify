@@ -40,4 +40,9 @@ jobs:
         
         pip install -r src/requirements.txt
     - name: Run tests with pytest
-      run: pytest 
+      run: 
+          cd ..
+          
+          pwd
+          
+          pytest 
