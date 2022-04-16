@@ -1,7 +1,7 @@
 # Session project
 
 
-The main purpose of this project is managing sessions with Flask framework using a SQLite database (using SQLAlchemy as ORM).
+The main purpose of this project is managing sessions with Flask framework using a SQLite database (using SQLAlchemy as ORM).  
 There are 2 main APIs that has to be handled, according to the assignment:
 
 
@@ -14,7 +14,7 @@ In order to ensure that the access to db is thread safe - scoped_session of SQLA
 
 The project has both unit and functionality tests, designed using Pytest framework.
 
-This project has a dockerfile in order to be executed on containers.
+This project has a dockerfile in order to be executed on containers.  
 In order to run this project on a container, you can use the following commands as example:  
 `docker build -t sessions_proj_img .`  
 `docker run -p 8081:5000 sessions_proj_img`
@@ -26,19 +26,18 @@ There is a docker-compose.yml with nginx support.
 In order to build using the docker compose file, use the command:  
 `docker-compose up --build -d`  
   
-The terraform code located in `/src/main.tf` creates aws environment with all required resources.
+The terraform code located in `/src/tf/main.tf` creates aws environment with all required resources (as previewed below).
 
-On each push to the main branch, there is a github action that builds and pushs the docker image to docker hub
+On each push to the main branch, there is a github action that builds and pushs the docker image to docker hub, and a an action that triggers pytest in order to run the tests and provide results of these tests at the end of the push. 
 
 Once on each day, there is crontab configuration (explained in `/reclone_project_and_docker_compose.sh`) that restarting the docker-compose:
 >1. Composing down the active containers (flask_app and nginx).
 >2. Cloning the project from github repo (current repo).
->3. Restart the compose with the latest image from docker hub uploaded by github action explained above.
+>3. Restart the compose with the latest code and image from docker hub uploaded by github action explained above.
 
 ## Env preview
 
-![image](https://user-images.githubusercontent.com/48648513/162792774-fbfdb2ff-4681-49d2-b8fe-4ff77f3c8109.png)
-
+![image](https://user-images.githubusercontent.com/48648513/163667148-aeb16045-6384-45cd-a272-7b3820f70f6a.png)
 
   
 
