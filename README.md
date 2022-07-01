@@ -28,9 +28,9 @@ In order to build using the docker compose file, use the command:
   
 The terraform code located in `/src/tf/main.tf` creates aws environment with all required resources (as previewed below).
 
-On each push to the main branch, there is a github action that builds and pushs the docker image to docker hub, and a an action that triggers pytest in order to run the tests and provide results of these tests at the end of the push. 
+On each push to the main branch, there is a github action that builds and pushs the docker image to docker hub, and an action that triggers pytest in order to run the tests and provide results of these tests at the end of the push. 
 
-Once on each day, there is crontab configuration (explained in `/reclone_project_and_docker_compose.sh`) that restarting the docker-compose:
+Once on each day, there is a crontab configuration (explained in `/reclone_project_and_docker_compose.sh`) that restarting the docker-compose:
 >1. Composing down the active containers (flask_app and nginx).
 >2. Cloning the project from github repo (current repo).
 >3. Restart the compose with the latest code and image from docker hub uploaded by github action explained above.
