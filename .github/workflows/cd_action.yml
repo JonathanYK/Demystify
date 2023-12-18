@@ -18,7 +18,7 @@ jobs:
     - name: Delete old container
       run: sudo docker rm -f sessions-project-container || true
     - name: Run container
-      run: sudo docker run -d -p --name sessions-project-container ${{ secrets.DOCKER_HUB_USER }}/sessions-project:githubactions
+      run: sudo docker run -d -p 8081:5000 --name sessions-project-container ${{ secrets.DOCKER_HUB_USER }}/sessions-project:githubactions
 
       
   
