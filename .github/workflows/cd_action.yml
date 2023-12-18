@@ -2,7 +2,7 @@ name: cd_action
 
 on:
   workflow_run:
-    workflows: ["cd_action"]
+    workflows: ["ci_action"]
     types:
       - completed
 
