@@ -26,7 +26,7 @@ def db_config(app):
     
     # in case the're is no db_name database:
     if not database_exists(app.config['SQLALCHEMY_DATABASE_URI']):
-        db.create_all(app=app)
+        db.create_all()
     
 
 def register_blueprints(app):
