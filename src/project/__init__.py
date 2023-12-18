@@ -23,10 +23,11 @@ def create_sessions_app(config_filename):
 def db_config(app):
     
     db.init_app(app)
-    
-    # in case the're is no db_name database:
-    if not database_exists(app.config['SQLALCHEMY_DATABASE_URI']):
-        db.create_all()
+    with app.app_context():
+        
+        # In case there is no db_name database:
+        if not database_exists(app.config['SQLALCHEMY_DATABASE_URI']):
+            db.create_all()
     
 
 def register_blueprints(app):
